@@ -1,0 +1,6 @@
+{
+  "name": "Unique Power Systems",
+  "description": "Premium engineering, electrical, civil construction, and infrastructure contractors website representing Larsen & Toubro style corporate quality.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

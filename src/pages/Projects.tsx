@@ -7,6 +7,7 @@ import {
   X, ShieldAlert, CheckCircle2, ChevronRight, Compass, Eye, TrendingUp
 } from 'lucide-react';
 import { ROAD_TUNNELS_EXPERIENCE, Project } from '../data/companyData';
+import { API_URL } from '../config';
 
 export default function Projects() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,7 +18,7 @@ export default function Projects() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/projects')
+    fetch(`${API_URL}/api/projects`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setProjectsData(data);

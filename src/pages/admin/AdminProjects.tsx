@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Plus, Edit2, Trash2, Check, X as XIcon } from 'lucide-react';
 import { Project } from '../../data/companyData';
+import { API_URL } from '../../config';
 
 export default function AdminProjects() {
   const [items, setItems] = useState<Project[]>([]);
@@ -24,7 +25,7 @@ export default function AdminProjects() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/projects');
+      const response = await fetch(`${API_URL}/api/projects`);
       if (response.ok) {
         const data = await response.json();
         setItems(data);
@@ -42,7 +43,7 @@ export default function AdminProjects() {
     if (!window.confirm('Are you sure you want to delete this project?')) return;
     
     try {
-      const response = await fetch(`http://localhost:3000/api/projects/${id}`, {
+      const response = await fetch(`${API_URL}/api/projects/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -62,8 +63,8 @@ export default function AdminProjects() {
   const handleSave = async (item: Project, isNew: boolean) => {
     try {
       const url = isNew 
-        ? 'http://localhost:3000/api/projects' 
-        : `http://localhost:3000/api/projects/${item.id}`;
+        ? `${API_URL}/api/projects` 
+        : `${API_URL}/api/projects/${item.id}`;
       
       const response = await fetch(url, {
         method: isNew ? 'POST' : 'PUT',
@@ -228,7 +229,7 @@ function EditForm({
     const token = localStorage.getItem('adminToken');
 
     try {
-      const response = await fetch(`http://localhost:3000/api/upload`, {
+      const response = await fetch(`${API_URL}/api/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

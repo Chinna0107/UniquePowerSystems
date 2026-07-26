@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Plus, Edit2, Trash2, Check, X as XIcon } from 'lucide-react';
 import { AVAILABLE_CATEGORIES, GalleryCategory } from '../../data/galleryData';
+import { API_URL } from '../../config';
 
 interface GalleryItem {
   id: string;
@@ -33,7 +34,7 @@ export default function GalleryAdmin() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/gallery');
+      const response = await fetch(`${API_URL}/api/gallery`);
       if (response.ok) {
         const data = await response.json();
         setItems(data);
@@ -51,7 +52,7 @@ export default function GalleryAdmin() {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
     
     try {
-      const response = await fetch(`http://localhost:3000/api/gallery/${id}`, {
+      const response = await fetch(`${API_URL}/api/gallery/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -71,8 +72,8 @@ export default function GalleryAdmin() {
   const handleSave = async (item: GalleryItem, isNew: boolean) => {
     try {
       const url = isNew 
-        ? 'http://localhost:3000/api/gallery' 
-        : `http://localhost:3000/api/gallery/${item.id}`;
+        ? `${API_URL}/api/gallery` 
+        : `${API_URL}/api/gallery/${item.id}`;
       
       const response = await fetch(url, {
         method: isNew ? 'POST' : 'PUT',
@@ -224,7 +225,7 @@ function EditForm({
     const token = localStorage.getItem('adminToken');
 
     try {
-      const response = await fetch(`http://localhost:3000/api/upload`, {
+      const response = await fetch(`${API_URL}/api/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

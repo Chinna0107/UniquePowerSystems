@@ -8,6 +8,7 @@ import {
   GalleryCategory,
   GalleryImage,
 } from '../data/galleryData';
+import { API_URL } from '../config';
 
 type FilterValue = 'All' | GalleryCategory;
 
@@ -19,7 +20,7 @@ export default function Gallery() {
 
   // Fetch gallery images from backend
   useEffect(() => {
-    fetch('http://localhost:3000/api/gallery')
+    fetch(`${API_URL}/api/gallery`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {

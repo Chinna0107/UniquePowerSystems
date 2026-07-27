@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { Images, Briefcase, FileText, LogOut, Menu, X } from 'lucide-react';
+import { Images, Briefcase, FileText, LogOut, Menu, X, LayoutDashboard, Wallet } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function AdminLayout() {
@@ -22,8 +22,11 @@ export default function AdminLayout() {
   };
 
   const navItems = [
+    { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Gallery', path: '/admin/gallery', icon: Images },
     { name: 'Projects', path: '/admin/projects', icon: Briefcase },
+    { name: 'Project Worth', path: '/admin/project-worth', icon: Wallet },
+    { name: 'Transactions', path: '/admin/transactions', icon: FileText },
     { name: 'Ledgers', path: '/admin/ledgers', icon: FileText },
   ];
 

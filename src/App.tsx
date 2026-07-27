@@ -12,6 +12,9 @@ import Login from './pages/admin/Login';
 import GalleryAdmin from './pages/admin/GalleryAdmin';
 import AdminProjects from './pages/admin/AdminProjects';
 import AdminLedgers from './pages/admin/AdminLedgers';
+import Transactions from './pages/admin/Transactions';
+import Dashboard from './pages/admin/Dashboard';
+import ProjectWorth from './pages/admin/ProjectWorth';
 
 export default function App() {
   return (
@@ -21,10 +24,13 @@ export default function App() {
         <Route path="/admin/login" element={<Login />} />
         
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/gallery" replace />} />
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="project-worth" element={<ProjectWorth />} />
           <Route path="gallery" element={<GalleryAdmin />} />
           <Route path="projects" element={<AdminProjects />} />
           <Route path="ledgers" element={<AdminLedgers />} />
+          <Route path="transactions" element={<Transactions />} />
         </Route>
         
         {/* Public Routes */}

@@ -211,12 +211,13 @@ function EditForm({
   isNew = false
 }: { 
   initialItem: Project; 
-  onSave: (item: Project) => void; 
+  onSave: (item: Project) => Promise<void>; 
   onCancel: () => void;
   isNew?: boolean;
 }) {
   const [item, setItem] = useState(initialItem);
   const [isUploading, setIsUploading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -366,15 +367,21 @@ function EditForm({
       <div className="md:col-span-2 flex justify-end gap-3 mt-6">
         <button
           onClick={onCancel}
-          className="px-4 py-2 border border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 flex items-center font-bold transition-all text-sm"
+          disabled={isSaving || isUploading}
+          className="px-4 py-2 border border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 flex items-center font-bold transition-all text-sm disabled:opacity-50"
         >
           <XIcon className="w-4 h-4 mr-2" /> Cancel
         </button>
         <button
-          onClick={() => onSave(item)}
-          className="px-4 py-2 bg-[#F97316] text-white rounded-xl shadow-md shadow-orange-500/20 hover:bg-[#ea6b14] flex items-center font-bold transition-all text-sm"
+          onClick={async () => {
+            setIsSaving(true);
+            await onSave(item);
+            setIsSaving(false);
+          }}
+          disabled={isSaving || isUploading}
+          className="px-4 py-2 bg-[#F97316] text-white rounded-xl shadow-md shadow-orange-500/20 hover:bg-[#ea6b14] flex items-center font-bold transition-all text-sm disabled:opacity-50"
         >
-          <Check className="w-4 h-4 mr-2" /> Save
+          <Check className="w-4 h-4 mr-2" /> {isSaving ? 'Saving...' : 'Save'}
         </button>
       </div>
     </div>

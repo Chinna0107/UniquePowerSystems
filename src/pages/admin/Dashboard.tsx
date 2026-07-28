@@ -3,7 +3,8 @@ import { LayoutDashboard, Images, Briefcase, Activity, CheckCircle, Globe, Trend
 import { motion } from 'motion/react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+import { API_URL as BASE_URL } from '../../config';
+const API_URL = `${BASE_URL}/api`;
 
 interface DashboardStats {
   galleryImages: number;

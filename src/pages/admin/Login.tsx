@@ -30,7 +30,7 @@ export default function Login() {
       if (response.ok) {
         localStorage.setItem('adminToken', data.token);
         localStorage.setItem('adminUsername', data.username);
-        navigate('/admin/gallery');
+        navigate('/admin/dashboard');
       } else {
         setError(data.error || 'Login failed');
       }
@@ -60,7 +60,7 @@ export default function Login() {
             <Lock className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Admin Login</h1>
-          <p className="text-slate-500 font-medium">Sign in to manage your gallery</p>
+          <p className="text-slate-500 font-medium">Sign in to manage your dashboard</p>
         </div>
 
         {error && (

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Wallet, FileSpreadsheet, HandCoins, Building2, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+import { API_URL as BASE_URL } from '../../config';
+const API_URL = `${BASE_URL}/api`;
 
 interface Payment {
   id: number;

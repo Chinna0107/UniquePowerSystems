@@ -8,8 +8,14 @@ import {
 } from 'lucide-react';
 import { ROAD_TUNNELS_EXPERIENCE, Project } from '../data/companyData';
 import { API_URL } from '../config';
+import { useSEO } from '../hooks/useSEO';
 
 export default function Projects() {
+  useSEO({
+    title: 'Projects | Silkyara Tunnel, Mumbai-Pune Expressway, NMSCEW & More | Unique Power Systems',
+    description: 'Explore 100+ completed and ongoing electrical & civil projects by Unique Power Systems – Silkyara Barkot tunnel, Missing Link Mumbai-Pune, NMSCEW, Khalapur Toll Plaza, Philippines defense facilities & more.',
+    canonical: 'https://upsinfra.in/projects',
+  });
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeFilter, setActiveFilter] = useState<'All' | 'Completed' | 'Ongoing' | 'Tunnel' | 'International'>('All');
   const [searchQuery, setSearchQuery] = useState('');

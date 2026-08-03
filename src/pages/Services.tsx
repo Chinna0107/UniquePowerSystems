@@ -6,8 +6,14 @@ import {
   Check, ArrowRight, ShieldCheck, Award, ThumbsUp, Layers, HelpCircle
 } from 'lucide-react';
 import { SERVICES_DATA, PROJECTS_DATA } from '../data/companyData';
+import { useSEO } from '../hooks/useSEO';
 
 export default function Services() {
+  useSEO({
+    title: 'Services | Tunnel Electrification, EHV Substations, HVAC & Civil | Unique Power Systems',
+    description: 'Unique Power Systems offers tunnel electrification, EHV cable laying, substation installation, tunnel ventilation, HVAC, fire fighting, ELV/SCADA, industrial electrification & O&M services across India.',
+    canonical: 'https://upsinfra.in/services',
+  });
   
   // Icon finder map
   const iconMap: Record<string, any> = {

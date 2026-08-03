@@ -9,10 +9,16 @@ import {
   GalleryImage,
 } from '../data/galleryData';
 import { API_URL } from '../config';
+import { useSEO } from '../hooks/useSEO';
 
 type FilterValue = 'All' | GalleryCategory;
 
 export default function Gallery() {
+  useSEO({
+    title: 'Project Gallery | Electrical, Tunnel & Civil Site Photos | Unique Power Systems',
+    description: 'Browse site photographs of completed electrical, tunnel electrification, civil construction, substation and infrastructure projects executed by Unique Power Systems across India.',
+    canonical: 'https://upsinfra.in/gallery',
+  });
   const [activeFilter, setActiveFilter] = useState<FilterValue>('All');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
@@ -36,30 +42,6 @@ export default function Gallery() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  // SEO: page title + meta description (lightweight, no extra dependency)
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title = 'Project Gallery | Unique Power Systems';
-
-    let metaDesc = document.querySelector('meta[name="description"]');
-    const previousContent = metaDesc?.getAttribute('content') ?? null;
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute(
-      'content',
-      'Explore completed electrical, civil, tunnel, industrial and infrastructure projects executed by Unique Power Systems across India.'
-    );
-
-    return () => {
-      document.title = previousTitle;
-      if (metaDesc && previousContent !== null) {
-        metaDesc.setAttribute('content', previousContent);
-      }
-    };
-  }, []);
 
   const filters: FilterValue[] = useMemo(
     () => ['All', ...AVAILABLE_CATEGORIES],

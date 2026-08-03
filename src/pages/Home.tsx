@@ -12,8 +12,14 @@ import {
   Phone, Sparkles, X, Shield
 } from 'lucide-react';
 import { COMPANY_PROFILE, SERVICES_DATA, PROJECTS_DATA, ROAD_TUNNELS_EXPERIENCE } from '../data/companyData';
+import { useSEO } from '../hooks/useSEO';
 
 export default function Home() {
+  useSEO({
+    title: 'Unique Power Systems | Electrical & Civil Contractors India | Tunnel Electrification',
+    description: 'Unique Power Systems (UPS) – India\'s trusted electrical & civil contractor since 2010. Tunnel electrification, EHV substations, HVAC, fire fighting, ELV & SCADA. Serving DRDO, Navayuga, BrahMos & more.',
+    canonical: 'https://upsinfra.in/',
+  });
   const [activeVideoModal, setActiveVideoModal] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();

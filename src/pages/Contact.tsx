@@ -6,8 +6,14 @@ import {
   AlertCircle, Building, Loader2, Sparkles, ShieldCheck, ArrowRight
 } from 'lucide-react';
 import { COMPANY_PROFILE, SERVICES_DATA } from '../data/companyData';
+import { useSEO } from '../hooks/useSEO';
 
 export default function Contact() {
+  useSEO({
+    title: 'Contact Unique Power Systems | Hyderabad, Delhi & Lonavala Offices',
+    description: 'Contact Unique Power Systems for electrical contracting, tunnel electrification, civil construction & HVAC proposals. Offices in Hyderabad, New Delhi & Lonavala. Call +91 7896675502.',
+    canonical: 'https://upsinfra.in/contact',
+  });
   const [searchParams] = useSearchParams();
   const [formType, setFormType] = useState<'enquiry' | 'quote'>('enquiry');
 

@@ -9,8 +9,14 @@ import {
   COMPANY_PROFILE, FINANCIAL_GROWTH, MANPOWER_STRENGTH, 
   LICENSES, MEASURING_EQUIPMENTS, TOOLS_AND_PLANTS 
 } from '../data/companyData';
+import { useSEO } from '../hooks/useSEO';
 
 export default function About() {
+  useSEO({
+    title: 'About Unique Power Systems | 16 Years Electrical & Civil Contracting Excellence',
+    description: 'Learn about Unique Power Systems – established 2010, Class A electrical contractor with 117+ workforce, Rs.77 Cr annual turnover, serving DRDO, Navayuga & BrahMos Aerospace.',
+    canonical: 'https://upsinfra.in/about',
+  });
   const [activeEquipmentTab, setActiveEquipmentTab] = useState<'machinery' | 'measuring'>('machinery');
   const [searchQuery, setSearchQuery] = useState('');
 
